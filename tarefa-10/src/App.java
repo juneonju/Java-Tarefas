@@ -7,7 +7,7 @@ public class App {
         String lista = sc.nextLine();
         String[] stringSeparada = lista.split(",");
 
-        int min = 0;
+        int min = Integer.valueOf(stringSeparada[0]);
         int max = 0;
         for (int i = 0; i < stringSeparada.length; i++) {
 
@@ -18,7 +18,7 @@ public class App {
             }
 
             if (min > atual) {
-                max = atual;
+                min = atual;
             }
         }
 

@@ -4,8 +4,7 @@ public class Numeros {
     public Numeros(int[] arrayNumeros) {
         this.arrayNumeros = arrayNumeros;
     }
-
-    // Método para somar todos os números no array
+    
     public int somarNumeros() {
         int soma = 0;
         for (int numero : arrayNumeros) {

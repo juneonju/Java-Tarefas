@@ -13,25 +13,40 @@ public class School {
     }
 
     public void registerNote(String register, String matter, List<Double> notes){
-            if (findStudentByRegister(register) != null) {
-                student.notes.put(matter, notes);
+            if (findStudentByRegister(register) != -1) {
+                students.get(findStudentByRegister(register)).notes.put(matter, notes);
             } 
     }
 
-    public Double calcularMedia(String matricula, String disciplina){
+    public Double calculateAverage(String register, String matter){
+        Double averageNotes = 0.0;
+        Double sumNotes = 0.0;
+
+        if (findStudentByRegister(register) != -1) {
+            if (students.get(findStudentByRegister(register)).notes.containsKey(matter)) {
+
+                List<Double> noteList = students.get(findStudentByRegister(register)).notes.get(matter);
+
+                for (Double double1 : noteList) {
+                    sumNotes += double1;          
+                }
+                averageNotes = sumNotes / noteList.size();
+                return averageNotes;
+            }
+        }
         return null;
     }
 
-    public List<Student> listarAlunos(){
+    public List<Student> showStudants(){
         return students;
     }
 
-    private Student findStudentByRegister(String register){
-        for (Student student : students) {
-            if (student.register.equals(register)) {
-                return student;
-            }           
+    private int findStudentByRegister(String register){
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).register.equals(register)) {
+                return i;
+            }        
         }
-        return null;
+        return -1;
     }
 }
